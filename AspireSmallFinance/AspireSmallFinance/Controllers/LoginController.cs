@@ -25,6 +25,7 @@ namespace AspireSmallFinance.Controllers
 
 
         [HttpPost("login")]
+        [EndpointDescription("Log-in and return the user information to UI.")]
         public Task<Users> Login([FromBody] LoginRequest request)
         {
             var authenticationServices = new AuthenticationServices(_context);

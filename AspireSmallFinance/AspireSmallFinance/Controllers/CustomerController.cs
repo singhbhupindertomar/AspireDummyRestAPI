@@ -27,6 +27,7 @@ namespace AspireSmallFinance.Controllers
         }
 
         [HttpGet("loans")]
+        [EndpointDescription("List all the loan application for the logged in user.")]
         public async Task<List<LoanApplication>> List()
         {
             var loanApplicationServices = new LoanApplicationServices(_context);
@@ -36,6 +37,7 @@ namespace AspireSmallFinance.Controllers
 
 
         [HttpGet("loans/{id}")]
+        [EndpointDescription("Load details of loan by id for the logged in user.")]
         public async Task<LoanDetail> Load(int id)
         {
             var loanApplicationServices = new LoanApplicationServices(_context);
@@ -46,6 +48,7 @@ namespace AspireSmallFinance.Controllers
 
 
         [HttpPost("loans/new")]
+        [EndpointDescription("Submit the request for new loan application.")]
         public async Task<LoanDetail> Submit([FromBody] NewApplicationRequest application)
         {
             var loanApplicationServices = new LoanApplicationServices(_context);
@@ -56,6 +59,7 @@ namespace AspireSmallFinance.Controllers
 
 
         [HttpPost("loans/{id}/pay")]
+        [EndpointDescription("Perform payments for the loan.")]
         public async Task<LoanDetail> MakePayment(int id, [FromQuery(Name = "amount")] double amount)
         {
             var paymentServices = new LoanPaymentServices(_context);

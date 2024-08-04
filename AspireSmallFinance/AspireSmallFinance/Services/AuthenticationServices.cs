@@ -21,7 +21,7 @@ namespace AspireSmallFinance.Services
 
         public async Task<Users> Login(string username, string password)
         {
-            return await _dbContext.Users.SingleAsync(idx => string.Equals(idx.UserName.ToUpper(),username.ToUpper()));
+            return await _dbContext.Users.SingleAsync(idx => string.Equals(idx.UserName.ToUpper(),username.ToUpper()) && password == "welcome@1");
         }
     }
 }

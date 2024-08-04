@@ -6,6 +6,7 @@ using System.Security.Claims;
 using static AspireSmallFinance.Utilities.ClaimUtils;
 using Microsoft.AspNetCore.Authorization;
 using AspireSmallFinance.Models.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace AspireSmallFinance.Controllers
 {
@@ -25,6 +26,7 @@ namespace AspireSmallFinance.Controllers
 
 
         [HttpGet("users")]
+        [EndpointDescription("Fetch the details of all the users in database to load users dropdown on UI.")]
         public async Task<List<Users>> ListUsers()
         {
             var referenceDataServices = new ReferenceDataServices(_context);
@@ -33,6 +35,8 @@ namespace AspireSmallFinance.Controllers
 
 
         [HttpGet("applications")]
+        [EndpointDescription("List all the loan applications currently in the system.")]
+
         public async Task<List<LoanApplication>> List()
         {
             var loanApplicationServices = new LoanApplicationServices(_context);
@@ -40,6 +44,7 @@ namespace AspireSmallFinance.Controllers
         }
 
         [HttpGet("applications/{id}")]
+        [EndpointDescription("Details of the loan application by id.")]
         public Task<LoanDetail> Load(int id)
         {
             var loanApplicationServices = new LoanApplicationServices(_context);
@@ -48,6 +53,7 @@ namespace AspireSmallFinance.Controllers
 
        
         [HttpPost("applications/{id}/approve")]
+        [EndpointDescription("Approve the pending loan application.")]
         public async Task<LoanDetail> Approve(int id)
         {
             var loanApplicationServices = new LoanApplicationServices(_context);
