@@ -1,0 +1,6 @@
+@AspireSmallFinance_HostAddress = http://localhost:5255
+
+GET {{AspireSmallFinance_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
