@@ -28,45 +28,45 @@ namespace AspireSmallFinance.Controllers
 
         [HttpGet("loans")]
         [EndpointDescription("List all the loan application for the logged in user.")]
-        public async Task<List<LoanApplication>> List()
+        public ActionResult<List<LoanApplication>> List()
         {
             var loanApplicationServices = new LoanApplicationServices(_context);
             string userSysId = GetClaimValue(ClaimTypes.PrimarySid, User.Claims);
-            return await loanApplicationServices.ReadListAsync(Convert.ToInt32(userSysId));
+            return  loanApplicationServices.ReadList(Convert.ToInt32(userSysId));
         }
 
 
         [HttpGet("loans/{id}")]
         [EndpointDescription("Load details of loan by id for the logged in user.")]
-        public async Task<LoanDetail> Load(int id)
+        public ActionResult<LoanDetail> Load(int id)
         {
             var loanApplicationServices = new LoanApplicationServices(_context);
             string userSysId = GetClaimValue(ClaimTypes.PrimarySid, User.Claims);
-            return await loanApplicationServices.ReadAsync(id, Convert.ToInt32(userSysId));
+            return loanApplicationServices.Read(id, Convert.ToInt32(userSysId));
         }
 
 
 
         [HttpPost("loans/new")]
         [EndpointDescription("Submit the request for new loan application.")]
-        public async Task<LoanDetail> Submit([FromBody] NewApplicationRequest application)
+        public ActionResult<LoanDetail> Submit([FromBody] NewApplicationRequest application)
         {
             var loanApplicationServices = new LoanApplicationServices(_context);
             string userSysId = GetClaimValue(ClaimTypes.PrimarySid, User.Claims);
-            var dbResponse = loanApplicationServices.InsertAsync(application, Convert.ToInt32(userSysId));
-            return await loanApplicationServices.ReadAsync(dbResponse, Convert.ToInt32(userSysId));
+            var dbResponse = loanApplicationServices.Insert(application, Convert.ToInt32(userSysId));
+            return loanApplicationServices.Read(dbResponse, Convert.ToInt32(userSysId));
         }
 
 
         [HttpPost("loans/{id}/pay")]
         [EndpointDescription("Perform payments for the loan.")]
-        public async Task<LoanDetail> MakePayment(int id, [FromQuery(Name = "amount")] double amount)
+        public ActionResult<LoanDetail> MakePayment(int id, [FromQuery(Name = "amount")] double amount)
         {
             var paymentServices = new LoanPaymentServices(_context);
             var loanApplicationServices = new LoanApplicationServices(_context);
             string userSysId = GetClaimValue(ClaimTypes.PrimarySid, User.Claims);
             paymentServices.InsertUpdatePayment(id, Convert.ToDecimal(amount));
-            return await loanApplicationServices.ReadAsync(id, Convert.ToInt32(userSysId));
+            return loanApplicationServices.Read(id, Convert.ToInt32(userSysId));
 
         }
     }

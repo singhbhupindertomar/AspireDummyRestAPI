@@ -21,11 +21,11 @@ namespace AspireSmallFinance.Services
             _dbContext = dbContext;
         }
 
-        public async Task ApproveAsync(int id)
+        public void Approve(int id)
         {
             try
             {
-                LoanApplications applications = await _dbContext.LoanApplications.SingleAsync(idxApp => idxApp.LoanApplicationSysId == id);
+                LoanApplications applications = _dbContext.LoanApplications.Single(idxApp => idxApp.LoanApplicationSysId == id);
                 applications.IsApprovedFlag = true;
                 _dbContext.LoanApplications.Attach(applications);
                 _dbContext.SaveChangesDB();
@@ -37,7 +37,7 @@ namespace AspireSmallFinance.Services
             }
         }
 
-        public int InsertAsync(NewApplicationRequest application, int UserSysId)
+        public int Insert(NewApplicationRequest application, int UserSysId)
         {
             try
             {
@@ -89,12 +89,12 @@ namespace AspireSmallFinance.Services
 
         }
 
-        public async Task<LoanDetail> ReadAsync(int id, int userSysId)
+        public LoanDetail Read(int id, int userSysId)
         {
             LoanDetail response = new LoanDetail();
-            var applications = await _dbContext.LoanApplications.ToListAsync();
-            var users = await _dbContext.Users.ToListAsync();
-            var payments = await _dbContext.Payments.ToListAsync();
+            var applications = _dbContext.LoanApplications.ToList();
+            var users = _dbContext.Users.ToList();
+            var payments = _dbContext.Payments.ToList();
 
             if (applications != null && users != null)
             {
@@ -140,13 +140,13 @@ namespace AspireSmallFinance.Services
             return response;
         }
 
-        public async Task<List<LoanApplication>> ReadListAsync(int userSysId)
+        public List<LoanApplication> ReadList(int userSysId)
         {
             List<LoanApplication> response = new List<LoanApplication>();
 
-            var applications = await _dbContext.LoanApplications.ToListAsync();
-            var users = await _dbContext.Users.ToListAsync();
-            var payments = await _dbContext.Payments.ToListAsync();
+            var applications = _dbContext.LoanApplications.ToList();
+            var users = _dbContext.Users.ToList();
+            var payments = _dbContext.Payments.ToList();
                         
             if (applications != null && users != null && payments != null)
             {

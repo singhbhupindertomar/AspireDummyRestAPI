@@ -21,9 +21,9 @@ namespace AspireSmallFinance.Services
             _dbContext = dbContext;
         }
 
-        public async Task<List<Users>> GetAllUsers()
+        public List<Users> GetAllUsers()
         {
-            return await _dbContext.Users.ToListAsync();
+            return _dbContext.Users.ToList();
 
         }
     }

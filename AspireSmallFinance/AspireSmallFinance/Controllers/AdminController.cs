@@ -27,38 +27,38 @@ namespace AspireSmallFinance.Controllers
 
         [HttpGet("users")]
         [EndpointDescription("Fetch the details of all the users in database to load users dropdown on UI.")]
-        public async Task<List<Users>> ListUsers()
+        public ActionResult<List<Users>> ListUsers()
         {
             var referenceDataServices = new ReferenceDataServices(_context);
-            return await referenceDataServices.GetAllUsers();
+            return referenceDataServices.GetAllUsers();
         }
-
 
         [HttpGet("applications")]
         [EndpointDescription("List all the loan applications currently in the system.")]
 
-        public async Task<List<LoanApplication>> List()
+        public ActionResult<List<LoanApplication>> List()
         {
             var loanApplicationServices = new LoanApplicationServices(_context);
-            return await loanApplicationServices.ReadListAsync(0);
+            return loanApplicationServices.ReadList(0);
         }
 
         [HttpGet("applications/{id}")]
         [EndpointDescription("Details of the loan application by id.")]
-        public Task<LoanDetail> Load(int id)
+        public ActionResult<LoanDetail> Load(int id)
         {
             var loanApplicationServices = new LoanApplicationServices(_context);
-            return loanApplicationServices.ReadAsync(id, 0);
+            return loanApplicationServices.Read(id, 0);
         }
 
-       
+
         [HttpPost("applications/{id}/approve")]
         [EndpointDescription("Approve the pending loan application.")]
-        public async Task<LoanDetail> Approve(int id)
+        public ActionResult<LoanDetail> Approve(int id)
         {
             var loanApplicationServices = new LoanApplicationServices(_context);
-            await loanApplicationServices.ApproveAsync(id);
-            return await loanApplicationServices.ReadAsync(id,  0);
+            loanApplicationServices.Approve(id);
+            return loanApplicationServices.Read(id, 0);
         }
+
     }
 }

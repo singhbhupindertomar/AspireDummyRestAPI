@@ -1,4 +1,6 @@
-﻿namespace AspireSmallFinance.Models.Entities
+﻿using System.Collections.Generic;
+
+namespace AspireSmallFinance.Models.Entities
 {
     public class Users
     {
