@@ -1,6 +1,6 @@
-![image](https://github.com/user-attachments/assets/82670154-5654-4461-9f65-7688886b9a4f)**Overview**
+**Overview**
 
-This is a RESTful API designed for Aspire Mini Loan Application. The API provides endpoints to interact with Aspire Loan App for Admin as well as Non-Admin user.
+This is a RESTful API designed for the Aspire Mini Loan Application. The API provides endpoints to interact with the Aspire Loan App for Admin and Non-Admin users.
 
 **Prerequisites**
 
@@ -27,7 +27,7 @@ Clone the repository:
 - Customer operations
   ![image](https://github.com/user-attachments/assets/7e0d5a0d-3585-4697-bf07-7af82ab12227)
 
-2. API uses SQL as database which is hosted on AWS.
+2. API uses SQL as a database which is hosted on AWS.
    - 3 Database tables are added as of now
    - **Users**
    - 
