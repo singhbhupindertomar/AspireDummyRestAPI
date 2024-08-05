@@ -19,8 +19,10 @@ Clone the repository:
 API support operations in 3 groups
 - Authentication
   ![image](https://github.com/user-attachments/assets/8a885042-5538-4b0f-b133-3b87eeb3fb2e)
+  
 - Admin operations
-  ![image](https://github.com/user-attachments/assets/d506f3e9-f845-4bef-ae65-669209aa2910)
+![image](https://github.com/user-attachments/assets/b6372677-b82a-4621-a8d9-c72497b4e5eb)
+
 - Customer operations
   ![image](https://github.com/user-attachments/assets/7e0d5a0d-3585-4697-bf07-7af82ab12227)
 
